@@ -27,7 +27,7 @@ Spree::TaxRate.class_eval do
   private
 
   def avatax_there_can_be_only_one
-    if Spree::TaxRate.count > 0
+    if Spree::TaxRate.where(tenant_id: self.tenant_id).count > 0
       errors.add(:base, "only one tax rate is allowed and this would make #{Spree::TaxRate.count+1}")
     end
   end
