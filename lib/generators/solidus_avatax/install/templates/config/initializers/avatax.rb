@@ -2,11 +2,13 @@
 SpreeAvatax::Config.username = ENV["AVATAX_USERNAME"]
 SpreeAvatax::Config.password = ENV["AVATAX_PASSWORD"]
 SpreeAvatax::Config.company_code = ENV["AVATAX_COMPANY_CODE"]
-if Rails.env.production?
-  SpreeAvatax::Config.service_url = "https://avatax.avalara.net"
-else
-  SpreeAvatax::Config.service_url = "https://development.avalara.net"
-end
+# if Rails.env.production?
+#   SpreeAvatax::Config.service_url = "https://avatax.avalara.net"
+# else
+#   SpreeAvatax::Config.service_url = "https://development.avalara.net"
+# end
+
+SpreeAvatax::Config.service_url = ENV["AVATAX_ENDPOINT"]
 
 # Use Avatax to compute return invoice tax amounts
 Spree::Reimbursement.reimbursement_tax_calculator = lambda do |reimbursement|
